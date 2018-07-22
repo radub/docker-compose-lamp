@@ -1,0 +1,55 @@
+version: '3'
+services:
+  web:
+    container_name: ${APP_CODE_NAME}_web
+    build:
+      context: .
+    restart: always
+    volumes:
+      - "./app:/app:cached"
+    environment:
+      - WEB_ALIAS_DOMAIN=${WEB_ALIAS_DOMAIN}
+      - WEB_DOCUMENT_ROOT=${WEB_DOCUMENT_ROOT}
+      - PHP_DATE_TIMEZONE=Europe/Bucharest
+      - PHP_DISPLAY_ERRORS=1
+      - PHP_MEMORY_LIMIT=2048M
+      - PHP_MAX_EXECUTION_TIME=300
+      - PHP_POST_MAX_SIZE=500M
+      - PHP_UPLOAD_MAX_FILE_SIZE=1024M
+      - PHP_DEBUGGER=xdebug
+      - XDEBUG_REMOTE_AUTOSTART=0
+      - XDEBUG_REMOTE_CONNECT_BACK=0
+      - XDEBUG_REMOTE_HOST=${XDEBUG_REMOTE_HOST}
+      - XDEBUG_REMOTE_PORT=${XDEBUG_REMOTE_PORT}
+      - php.xdebug.remote_enable=1
+      - php.xdebug.idekey=PHPSTORM
+    ports:
+      - "80:80"
+      - "433:433"
+      - "32822:22"
+    links:
+      - db
+      - redis
+  redis:
+    container_name: ${APP_CODE_NAME}_redis
+    image: redis:latest
+    restart: always
+    volumes:
+      - "redis-data:/data"
+
+  db:
+    container_name: ${APP_CODE_NAME}_db
+    image: mariadb:10
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: always
+#    volumes:
+#      - "db-data:/var/lib/mysql"
+    ports:
+      - "33068:3306"
+
+volumes:
+#  db-data:
+#    external: false
+  redis-data:
+    external: false
