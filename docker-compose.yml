@@ -43,13 +43,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     restart: always
-#    volumes:
-#      - "db-data:/var/lib/mysql"
+    volumes:
+      - "./bin/db:/var/lib/mysql"
     ports:
       - "33068:3306"
 
 volumes:
-#  db-data:
-#    external: false
   redis-data:
     external: false
