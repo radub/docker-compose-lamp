@@ -6,7 +6,7 @@ services:
       context: .
     restart: always
     volumes:
-      - "./app:/app:cached"
+      - "../appcode:/app:cached"
     environment:
       - WEB_ALIAS_DOMAIN=${WEB_ALIAS_DOMAIN}
       - WEB_DOCUMENT_ROOT=${WEB_DOCUMENT_ROOT}
