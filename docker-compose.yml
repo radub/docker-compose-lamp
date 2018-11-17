@@ -4,7 +4,7 @@ services:
     container_name: ${APP_CODE_NAME}_web
     build:
       context: .
-    restart: always
+    restart: 'no'
     volumes:
       - "../appcode:/app:cached"
     environment:
@@ -33,7 +33,7 @@ services:
   redis:
     container_name: ${APP_CODE_NAME}_redis
     image: redis:latest
-    restart: always
+    restart: 'no'
     volumes:
       - "redis-data:/data"
 
@@ -42,7 +42,7 @@ services:
     image: mariadb:10
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    restart: always
+    restart: 'no'
     volumes:
       - "./bin/db:/var/lib/mysql"
     ports:
