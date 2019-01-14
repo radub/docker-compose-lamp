@@ -8,3 +8,10 @@ Bare bones docker compose LAMP stack
   ├── docker        # contains docker-compose related configurations
   ├── appcode       # contains the application code
 ```
+
+# utils
+```
+# use 'docker' for password
+# APP_CODE_NAME is set in the .env file
+ssh docker@APP_CODE_NAME -p32822
+```
