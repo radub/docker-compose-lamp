@@ -9,7 +9,7 @@ Bare bones docker compose LAMP stack
   ├── appcode       # contains the application code
 ```
 
-# utils
+# Utils
 ```
 # use 'docker' for password
 # APP_CODE_NAME is set in the .env file
