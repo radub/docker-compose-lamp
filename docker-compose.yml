@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web:
+  webserver:
     container_name: ${APP_CODE_NAME}_web
     build:
       context: .
@@ -28,18 +28,11 @@ services:
       - "433:433"
       - "32822:22"
     links:
-      - db
-      - redis
-  redis:
-    container_name: ${APP_CODE_NAME}_redis
-    image: redis:latest
-    restart: 'no'
-    volumes:
-      - "redis-data:/data"
+      - database
 
-  db:
-    container_name: ${APP_CODE_NAME}_db
-    image: mariadb:10
+  database:
+    image: mysql:5.7
+    container_name: ${APP_CODE_NAME}_database
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     restart: 'no'
@@ -47,7 +40,3 @@ services:
       - "./bin/db:/var/lib/mysql"
     ports:
       - "33068:3306"
-
-volumes:
-  redis-data:
-    external: false
