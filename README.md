@@ -13,5 +13,5 @@ Bare bones docker compose LAMP stack
 ```
 # use 'docker' for password
 # APP_CODE_NAME is set in the .env file
-ssh docker@APP_CODE_NAME -p32822
+ssh docker@127.0.0.1 -p32822
 ```
