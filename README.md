@@ -7,6 +7,7 @@ Bare bones docker compose LAMP stack
   .projectname
   ├── docker        # contains docker-compose related configurations
   ├── appcode       # contains the application code
+  ├──── public      # the document root
 ```
 
 # Utils
